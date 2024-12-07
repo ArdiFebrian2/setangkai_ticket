@@ -24,7 +24,7 @@ class MainNavigationView extends GetView<MainNavigationController> {
           case 1:
             return const InfoView();
           case 2:
-            return const OrderView();
+            return OrderView();
           default:
             return const ProfileView();
         }

@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
 
+import '../modules/form_bus/bindings/form_bus_binding.dart';
+import '../modules/form_bus/views/form_bus_view.dart';
+import '../modules/form_kirimpaket/bindings/form_kirimpaket_binding.dart';
+import '../modules/form_kirimpaket/views/form_kirimpaket_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/info/bindings/info_binding.dart';
@@ -57,13 +61,23 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ORDER,
-      page: () => const OrderView(),
+      page: () => OrderView(),
       binding: OrderBinding(),
     ),
     GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORM_KIRIMPAKET,
+      page: () => const FormKirimpaketView(),
+      binding: FormKirimpaketBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORM_BUS,
+      page: () => FormBusView(),
+      binding: FormBusBinding(),
     ),
   ];
 }

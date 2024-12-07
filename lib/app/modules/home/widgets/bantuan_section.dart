@@ -27,13 +27,16 @@ class BantuanSection extends StatelessWidget {
             ),
             ElevatedButton.icon(
               onPressed: () {
-                // Tambahkan logika untuk membuka WhatsApp
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                       content: Text("Hubungi kami melalui WhatsApp")),
                 );
               },
-              icon: const Icon(Icons.phone, color: Colors.white),
+              icon: Image.asset(
+                'assets/images/wa.png',
+                width: 24,
+                height: 24,
+              ),
               label: const Text(
                 "Hubungi Kami",
                 style: TextStyle(color: Colors.white),

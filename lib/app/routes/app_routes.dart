@@ -11,6 +11,8 @@ abstract class Routes {
   static const INFO = _Paths.INFO;
   static const ORDER = _Paths.ORDER;
   static const PROFILE = _Paths.PROFILE;
+  static const FORM_KIRIMPAKET = _Paths.FORM_KIRIMPAKET;
+  static const FORM_BUS = _Paths.FORM_BUS;
 }
 
 abstract class _Paths {
@@ -23,4 +25,6 @@ abstract class _Paths {
   static const INFO = '/info';
   static const ORDER = '/order';
   static const PROFILE = '/profile';
+  static const FORM_KIRIMPAKET = '/form-kirimpaket';
+  static const FORM_BUS = '/form-bus';
 }

@@ -12,7 +12,7 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primary,
+      backgroundColor: secondary,
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -51,7 +51,7 @@ class LoginView extends GetView<LoginController> {
                   // Input Username
                   TextField(
                     decoration: InputDecoration(
-                      hintText: 'Username',
+                      hintText: 'Email',
                       contentPadding: const EdgeInsets.symmetric(
                         vertical: 12,
                         horizontal: 16,

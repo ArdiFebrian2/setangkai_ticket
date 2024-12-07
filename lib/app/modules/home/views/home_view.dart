@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
-import '../widgets/service_icon.dart';
 import '../widgets/section_title.dart';
-import '../widgets/list_text.dart';
 import '../widgets/cara_pesan_step.dart';
 import '../widgets/bantuan_section.dart';
 import 'package:setangkai_ticket/app/shared/theme.dart';
@@ -15,11 +13,10 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: primary,
         elevation: 0,
-        automaticallyImplyLeading: false, // Hilangkan tombol default back
+        automaticallyImplyLeading: false,
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -33,8 +30,8 @@ class HomeView extends GetView<HomeController> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              'Selamat Pagi Ardi!',
-              style: TextStyle(
+              'Selamat Pagi, Ardi!',
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
                 color: Colors.white,
@@ -43,24 +40,6 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
         centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: GestureDetector(
-              onTap: () {
-                Get.toNamed('/profile');
-              },
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 18,
-                child: Icon(
-                  Icons.person,
-                  color: primary,
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -71,9 +50,27 @@ class HomeView extends GetView<HomeController> {
               padding: const EdgeInsets.all(10.0),
               child: CarouselSlider(
                 items: [
-                  Image.asset('assets/images/bus1.jpg', fit: BoxFit.cover),
-                  Image.asset('assets/images/bus2.jpg', fit: BoxFit.cover),
-                  Image.asset('assets/images/bus3.jpg', fit: BoxFit.cover),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      'assets/images/banner1.jpg',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      'assets/images/banner1.jpg',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      'assets/images/banner1.jpg',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ],
                 options: CarouselOptions(
                   height: 200.0,
@@ -87,21 +84,93 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+
+            const SizedBox(height: 10),
 
             // Service Buttons
-            IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ServiceIcon(
-                      icon: Icons.directions_bus, label: "Angkutan\nUmum"),
-                  ServiceIcon(
-                      icon: Icons.local_shipping, label: "Kirim\nPaket"),
-                  ServiceIcon(
-                      icon: Icons.directions_bus_filled,
-                      label: "Sewa Bus\nPariwisata"),
-                ],
+            SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(
+                              '/form-bus',
+                            );
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.directions_bus,
+                                  size: 30, color: primary),
+                              const SizedBox(height: 5),
+                              const Text(
+                                "Angkutan\nUmum",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(
+                                '/form-kirimpaket'); // Navigasi untuk Kirim Paket
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const SizedBox(height: 5),
+                              Icon(Icons.local_shipping,
+                                  size: 30, color: primary),
+                              const Text(
+                                "Kirim\nPaket",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.directions_bus_filled,
+                                  size: 30, color: primary),
+                              const SizedBox(height: 5),
+                              const Text(
+                                "Sewa Bus\nPariwisata",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
 
@@ -109,93 +178,64 @@ class HomeView extends GetView<HomeController> {
 
             // Jurusan Bus
             Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: const SectionTitle(title: "Jurusan Bus"),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: const ListText(items: [
-                "Lintau - Padang",
-                "Padang - Lintau",
-                "Lintau - Pekanbaru - Perawang",
-                "Perawang - Pekanbaru - Lintau",
-              ]),
-            ),
-
-            // Jadwal Keberangkatan
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: const SectionTitle(title: "Jadwal Keberangkatan"),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: const ListText(items: [
-                "06.00 WIB",
-                "08.00 WIB",
-                "10.00 WIB",
-                "11.00 WIB",
-                "14.00 WIB",
-                "16.00 WIB",
-                "18.00 WIB",
-              ]),
-            ),
-
-            // Input Nama dan Telepon
-            const Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: "Nama Penumpang",
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: "Nomor Telepon",
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
+                  const SectionTitle(title: "Jurusan Bus"),
+                  const SizedBox(height: 10),
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: 4,
+                    itemBuilder: (context, index) {
+                      final jurusan = [
+                        "Lintau - Padang",
+                        "Padang - Lintau",
+                        "Lintau - Pekanbaru - Perawang",
+                        "Perawang - Pekanbaru - Lintau",
+                      ][index];
+                      return Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        elevation: 2,
+                        margin: const EdgeInsets.symmetric(vertical: 5),
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.directions_bus,
+                            color: primary,
+                          ),
+                          title: Text(
+                            jurusan,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                          onTap: () {
+                            // Aksi ketika item ditekan
+                            // Get.snackbar(
+                            //   "Jurusan Terpilih",
+                            //   "Kamu memilih jurusan $jurusan",
+                            //   snackPosition: SnackPosition.BOTTOM,
+                            //   backgroundColor: primary,
+                            //   colorText: Colors.white,
+                            // );
+
+                            // Atau navigasi ke halaman detail
+                            Get.toNamed('/form-bus',
+                                arguments: {'jurusan': jurusan});
+                          },
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
             ),
 
-            // Tombol Pesan Tiket
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  Get.snackbar("Anda belum mengisi data penumpang", "");
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: secondary,
-                  padding: const EdgeInsets.symmetric(vertical: 15.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                child: const Center(
-                  child: Text(
-                    "Pesan Tiket",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            const SizedBox(height: 20),
 
             // Bagian Cara Pesan
             const CaraPesanStep(),

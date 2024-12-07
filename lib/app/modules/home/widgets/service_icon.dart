@@ -16,7 +16,7 @@ class ServiceIcon extends StatelessWidget {
         Icon(
           icon,
           size: 40,
-          color: primary,
+          color: secondary,
         ),
         const SizedBox(height: 8),
         Text(

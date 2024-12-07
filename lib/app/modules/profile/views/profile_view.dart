@@ -127,7 +127,7 @@ class _ProfileOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(icon, color: primary),
+      leading: Icon(icon, color: secondary),
       title: Text(label),
       onTap: onTap,
       trailing: const Icon(Icons.arrow_forward_ios),

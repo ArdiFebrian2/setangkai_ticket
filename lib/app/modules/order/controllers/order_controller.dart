@@ -1,23 +1,15 @@
 import 'package:get/get.dart';
 
 class OrderController extends GetxController {
-  //TODO: Implement OrderController
+  final RxList<Map<String, dynamic>> orders = <Map<String, dynamic>>[].obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  // Menambah pesanan ke daftar
+  void addOrder(Map<String, dynamic> order) {
+    orders.add(order);
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  // Menghapus pesanan berdasarkan index
+  void deleteOrder(int index) {
+    orders.removeAt(index);
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
