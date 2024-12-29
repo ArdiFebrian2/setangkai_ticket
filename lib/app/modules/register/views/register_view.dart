@@ -1,16 +1,21 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import '../controllers/register_controller.dart';
 import 'package:setangkai_ticket/app/shared/theme.dart';
-
-class RegisterController extends GetxController {}
 
 class RegisterView extends GetView<RegisterController> {
   const RegisterView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(RegisterController());
+
+    final TextEditingController fullNameController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController usernameController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       backgroundColor: primary, // Warna oranye
       body: Center(
@@ -29,12 +34,13 @@ class RegisterView extends GetView<RegisterController> {
                 children: [
                   // Logo
                   CircleAvatar(
-                    radius: 40,
+                    radius: 100,
                     backgroundColor: Colors.transparent,
-                    child: SvgPicture.asset(
-                      'assets/images/bus_logo.svg',
-                      width: 64,
-                      height: 64,
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      width: 500,
+                      height: 150,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -50,6 +56,7 @@ class RegisterView extends GetView<RegisterController> {
                   const SizedBox(height: 16),
                   // Input Nama Lengkap
                   TextField(
+                    controller: fullNameController,
                     decoration: InputDecoration(
                       hintText: 'Nama Lengkap',
                       contentPadding: const EdgeInsets.symmetric(
@@ -66,6 +73,7 @@ class RegisterView extends GetView<RegisterController> {
                   const SizedBox(height: 16),
                   // Input Email
                   TextField(
+                    controller: emailController,
                     decoration: InputDecoration(
                       hintText: 'Email',
                       contentPadding: const EdgeInsets.symmetric(
@@ -82,6 +90,7 @@ class RegisterView extends GetView<RegisterController> {
                   const SizedBox(height: 16),
                   // Input Username
                   TextField(
+                    controller: usernameController,
                     decoration: InputDecoration(
                       hintText: 'Username',
                       contentPadding: const EdgeInsets.symmetric(
@@ -98,6 +107,7 @@ class RegisterView extends GetView<RegisterController> {
                   const SizedBox(height: 16),
                   // Input Password
                   TextField(
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: 'Password',
@@ -116,7 +126,12 @@ class RegisterView extends GetView<RegisterController> {
                   // Tombol Daftar
                   ElevatedButton(
                     onPressed: () {
-                      Get.toNamed('/login');
+                      controller.registerUser(
+                        fullNameController.text,
+                        emailController.text,
+                        usernameController.text,
+                        passwordController.text,
+                      );
                     },
                     child: const Text(
                       'Daftar',

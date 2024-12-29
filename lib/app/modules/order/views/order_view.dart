@@ -6,7 +6,9 @@ import '../controllers/order_controller.dart';
 class OrderView extends GetView<OrderController> {
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => OrderController());
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Riwayat Order"),
         centerTitle: true,
@@ -14,10 +16,20 @@ class OrderView extends GetView<OrderController> {
       ),
       body: Obx(() {
         if (controller.orders.isEmpty) {
-          return const Center(
-            child: Text(
-              "Belum ada riwayat pesanan.",
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/notempty.png',
+                  width: 300,
+                  height: 300,
+                ),
+                const Text(
+                  "Belum ada riwayat pesanan.",
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+              ],
             ),
           );
         }
@@ -77,6 +89,12 @@ class OrderView extends GetView<OrderController> {
                       icon: Icons.access_time_outlined,
                       label: "Waktu",
                       value: "${order['departureTime']}",
+                    ),
+                    const SizedBox(height: 8),
+                    _buildDetailRow(
+                      icon: Icons.price_change,
+                      label: "Harga",
+                      value: "Rp ${order['tiketPrice']}",
                     ),
                     const SizedBox(height: 8),
                     _buildDetailRow(

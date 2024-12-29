@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:setangkai_ticket/app/shared/theme.dart';
 
 import '../controllers/splashscreen_controller.dart';
 
@@ -9,11 +8,11 @@ class SplashscreenView extends GetView<SplashscreenController> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 3))
+    Future.delayed(const Duration(seconds: 5))
         .then((value) => Get.offAllNamed('/login'));
 
     return Scaffold(
-      backgroundColor: secondary,
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -23,23 +22,23 @@ class SplashscreenView extends GetView<SplashscreenController> {
               height: 400,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/splashscreen.png'),
+                  image: AssetImage('assets/images/logo.png'),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Center(
-                child: Text(
-                  'PT MULTI KARYA SETANGKAI',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                  ),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(10.0),
+            //   child: Center(
+            //     child: Text(
+            //       'PT MULTI KARYA SETANGKAI',
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //         fontSize: 40,
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

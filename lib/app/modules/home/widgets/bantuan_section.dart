@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:setangkai_ticket/app/shared/theme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BantuanSection extends StatelessWidget {
   const BantuanSection({super.key});
+
+  void _launchWhatsApp(String phoneNumber) async {
+    final Uri whatsappUrl = Uri.parse("https://wa.me/$phoneNumber");
+    if (!await launchUrl(whatsappUrl, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch WhatsApp');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +35,7 @@ class BantuanSection extends StatelessWidget {
             ),
             ElevatedButton.icon(
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content: Text("Hubungi kami melalui WhatsApp")),
-                );
+                _launchWhatsApp("+6282288648551"); // Ganti dengan nomor tujuan
               },
               icon: Image.asset(
                 'assets/images/wa.png',

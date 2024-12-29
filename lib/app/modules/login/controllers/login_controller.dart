@@ -1,36 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../main_navigation/views/main_navigation_view.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
-  var email = ''.obs;
-  var password = ''.obs;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final box = GetStorage();
 
-  // Fungsi untuk mengatur email
-  void setEmail(String value) {
-    email.value = value;
-  }
-
-  // Fungsi untuk mengatur password
-  void setPassword(String value) {
-    password.value = value;
-  }
-
-  // Fungsi untuk melakukan proses login
   void login() {
-    if (email.value.isNotEmpty && password.value.isNotEmpty) {
-      // Simulasi login berhasil
-      Get.lazyPut(() => MainNavigationView());
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    // Ambil data pengguna dari local storage
+    final user = box.read<Map<String, dynamic>>('user');
+
+    // Validasi input dengan data pengguna
+    if (user != null &&
+        user['email'] == email &&
+        user['password'] == password) {
+      // Simpan status login ke local storage
+      box.write('isLoggedIn', true);
+      box.write('userEmail', email);
+
+      // Navigasi ke halaman utama
+      Get.toNamed('/main_navigation');
     } else {
-      // Menampilkan pesan kesalahan jika ada field yang kosong
       Get.snackbar(
-        'Error',
-        'Masukkan data Anda terlebih dahulu.',
+        'Login Gagal',
+        'Email atau password salah',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.redAccent,
         colorText: Colors.white,
       );
     }
+  }
+
+  void logout() {
+    box.remove('isLoggedIn');
+    box.remove('userEmail');
+    Get.offAllNamed('/login');
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:setangkai_ticket/app/shared/theme.dart';
@@ -8,129 +9,179 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => ProfileController());
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        automaticallyImplyLeading: false,
+      backgroundColor: Colors.grey[100],
+      appBar: _buildAppBar(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _buildProfileCard(),
+              const SizedBox(height: 24),
+              _buildProfileOptions(),
+              const SizedBox(height: 16),
+              _buildLogoutButton(),
+            ],
+          ),
+        ),
       ),
-      body: Padding(
+    );
+  }
+
+  // ==============================
+  // AppBar
+  // ==============================
+  AppBar _buildAppBar() {
+    return AppBar(
+      backgroundColor: Colors.white,
+      elevation: 1,
+      title: const Text(
+        'Profile',
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+      ),
+      centerTitle: true,
+      iconTheme: const IconThemeData(color: Colors.black),
+    );
+  }
+
+  // ==============================
+  // Profile Card
+  // ==============================
+  Widget _buildProfileCard() {
+    return Card(
+      elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundImage:
-                      NetworkImage('https://via.placeholder.com/150'),
-                ),
-                const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Ardi Febrian',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      'ardifebrian@gmail.com', // Replace with dynamic data
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-
-            // Profile Options List
-            _ProfileOption(
-              icon: Icons.account_circle,
-              label: 'Account Settings',
-              onTap: () {
-                // Navigate to account settings
-              },
-            ),
-            _ProfileOption(
-              icon: Icons.history,
-              label: 'Order History',
-              onTap: () {
-                // Navigate to order history
-              },
-            ),
-            _ProfileOption(
-              icon: Icons.favorite_border,
-              label: 'Wishlist',
-              onTap: () {
-                // Navigate to wishlist
-              },
-            ),
-            _ProfileOption(
-              icon: Icons.notifications,
-              label: 'Notifications',
-              onTap: () {
-                // Navigate to notifications
-              },
-            ),
-            _ProfileOption(
-              icon: Icons.help_outline,
-              label: 'Help & Support',
-              onTap: () {
-                // Navigate to help and support
-              },
-            ),
-            const Spacer(),
-            // Logout Button
-            ElevatedButton(
-              onPressed: () {
-                Get.offAllNamed('/login');
-              },
-              child: const Text(
-                'Logout',
-                style: TextStyle(color: Colors.white),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: secondary,
-                minimumSize: const Size(double.infinity, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
+            _buildProfilePicture(),
+            const SizedBox(height: 16),
+            _buildProfileName(),
+            _buildProfileEmail(),
           ],
         ),
       ),
     );
   }
-}
 
-class _ProfileOption extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
+  Widget _buildProfilePicture() {
+    return GestureDetector(
+      onTap: () {
+        controller.pickImage();
+      },
+      child: Obx(
+        () => CircleAvatar(
+          radius: 60,
+          backgroundImage: controller.photoPath.value.contains('assets')
+              ? AssetImage(controller.photoPath.value) as ImageProvider
+              : FileImage(File(controller.photoPath.value)),
+        ),
+      ),
+    );
+  }
 
-  const _ProfileOption({
-    required this.icon,
-    required this.label,
-    required this.onTap,
-  });
+  Widget _buildProfileName() {
+    return Obx(
+      () => Text(
+        controller.name.value,
+        style: const TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(icon, color: secondary),
-      title: Text(label),
-      onTap: onTap,
-      trailing: const Icon(Icons.arrow_forward_ios),
+  Widget _buildProfileEmail() {
+    return Text(
+      'ardifebrian@gmail.com',
+      style: TextStyle(
+        fontSize: 14,
+        color: Colors.grey[600],
+      ),
+    );
+  }
+
+  // ==============================
+  // Profile Options List
+  // ==============================
+  Widget _buildProfileOptions() {
+    return Column(
+      children: [
+        _buildOptionCard(
+          icon: Icons.account_circle,
+          label: 'Account Settings',
+          onTap: () {},
+        ),
+        _buildOptionCard(
+          icon: Icons.history,
+          label: 'Order History',
+          onTap: () {
+            Get.toNamed('/order');
+          },
+        ),
+        _buildOptionCard(
+          icon: Icons.lock_outline,
+          label: 'Change Password',
+          onTap: () {},
+        ),
+      ],
+    );
+  }
+
+  Widget _buildOptionCard({
+    required IconData icon,
+    required String label,
+    required VoidCallback onTap,
+  }) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 12),
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: ListTile(
+        leading: Icon(icon, color: secondary, size: 28),
+        title: Text(
+          label,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        ),
+        trailing: const Icon(Icons.arrow_forward_ios, size: 18),
+        onTap: onTap,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+
+  // ==============================
+  // Logout Button
+  // ==============================
+  Widget _buildLogoutButton() {
+    return ElevatedButton(
+      onPressed: () {
+        Get.offAllNamed('/login');
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: secondary,
+        minimumSize: const Size(double.infinity, 50),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      child: const Text(
+        'Logout',
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

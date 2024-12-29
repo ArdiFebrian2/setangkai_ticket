@@ -13,6 +13,9 @@ class FormBusController extends GetxController {
   RxString selectedDestination = ''.obs;
   TextEditingController passengerNameController = TextEditingController();
 
+  // Variabel harga
+  RxInt ticketPrice = 0.obs;
+
   // Pilihan waktu keberangkatan
   final List<String> departureTimes = [
     '08:00 AM',
@@ -57,6 +60,17 @@ class FormBusController extends GetxController {
     'Bali',
   ];
 
+  // Data harga berdasarkan kombinasi keberangkatan dan tujuan
+  final Map<String, int> priceData = {
+    'Jakarta-Bandung': 100000,
+    'Jakarta-Surabaya': 250000,
+    'Jakarta-Yogyakarta': 200000,
+    'Bandung-Surabaya': 150000,
+    'Bandung-Yogyakarta': 125000,
+    'Bandung-Bali': 300000,
+    // Tambahkan kombinasi lainnya
+  };
+
   // Getter untuk format tanggal yang dipilih
   String get formattedSelectedDate {
     return selectedDate.value == null
@@ -87,6 +101,7 @@ class FormBusController extends GetxController {
   void updateDeparturePoint(String? point) {
     if (point != null) {
       selectedDeparturePoint.value = point;
+      calculatePrice(); // Hitung harga setiap kali keberangkatan diperbarui
     }
   }
 
@@ -94,7 +109,15 @@ class FormBusController extends GetxController {
   void updateDestination(String? destination) {
     if (destination != null) {
       selectedDestination.value = destination;
+      calculatePrice(); // Hitung harga setiap kali tujuan diperbarui
     }
+  }
+
+  // Fungsi untuk menghitung harga
+  void calculatePrice() {
+    String route =
+        '${selectedDeparturePoint.value}-${selectedDestination.value}';
+    ticketPrice.value = priceData[route] ?? 0;
   }
 
   // Fungsi untuk mengonfirmasi pembayaran

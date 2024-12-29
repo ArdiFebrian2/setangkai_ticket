@@ -48,11 +48,11 @@ class MainNavigationView extends GetView<MainNavigationController> {
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.info_outline_rounded),
-                label: 'Info',
+                icon: Icon(Icons.info_outline),
+                label: 'FAQ',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.airplane_ticket_rounded),
+                icon: Icon(Icons.confirmation_num),
                 label: 'Order',
               ),
               BottomNavigationBarItem(

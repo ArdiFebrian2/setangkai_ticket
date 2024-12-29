@@ -1,18 +1,19 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:get/get.dart';
 import 'package:setangkai_ticket/app/shared/theme.dart';
 
-class LoginController extends GetxController {}
+import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => LoginController());
     return Scaffold(
-      backgroundColor: secondary,
+      backgroundColor: primary,
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -29,14 +30,16 @@ class LoginView extends GetView<LoginController> {
                 children: [
                   // Logo
                   CircleAvatar(
-                    radius: 40,
+                    radius: 100,
                     backgroundColor: Colors.transparent,
-                    child: SvgPicture.asset(
-                      'assets/images/bus_logo.svg',
-                      width: 64,
-                      height: 64,
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      width: 500,
+                      height: 200,
+                      fit: BoxFit.cover,
                     ),
                   ),
+
                   const SizedBox(height: 16),
                   // Judul
                   const Text(
@@ -48,8 +51,9 @@ class LoginView extends GetView<LoginController> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // Input Username
+                  // Input Email
                   TextField(
+                    controller: controller.emailController,
                     decoration: InputDecoration(
                       hintText: 'Email',
                       contentPadding: const EdgeInsets.symmetric(
@@ -66,6 +70,7 @@ class LoginView extends GetView<LoginController> {
                   const SizedBox(height: 16),
                   // Input Password
                   TextField(
+                    controller: controller.passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: 'Password',
@@ -90,52 +95,13 @@ class LoginView extends GetView<LoginController> {
                           thickness: 1,
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text(
-                          'Atau lanjutkan dengan',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: Colors.grey.shade400,
-                          thickness: 1,
-                        ),
-                      ),
                     ],
                   ),
                   const SizedBox(height: 16),
-                  // Tombol Google
-                  ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: Image.asset(
-                      'assets/images/google.jpg',
-                      width: 24,
-                      height: 24,
-                    ),
-                    label: const Text(
-                      'Gunakan Akun Google',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12, horizontal: 16),
-                    ),
-                  ),
                   const SizedBox(height: 20),
                   // Tombol Masuk
                   ElevatedButton(
-                    onPressed: () {
-                      Get.toNamed('/main_navigation');
-                    },
+                    onPressed: controller.login,
                     child: const Text(
                       'Masuk',
                       style: TextStyle(color: Colors.white),

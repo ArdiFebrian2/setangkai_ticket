@@ -14,8 +14,11 @@ class FormBusView extends GetView<FormBusController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => FormBusController());
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: SingleChildScrollView(
@@ -133,6 +136,30 @@ class FormBusView extends GetView<FormBusController> {
                 }),
 
                 const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Row(
+                    children: const [
+                      Icon(Icons.attach_money, color: secondary),
+                      SizedBox(width: 8),
+                      Text("Harga Tiket"),
+                    ],
+                  ),
+                ),
+                Obx(() {
+                  return Text(
+                    controller.ticketPrice.value > 0
+                        ? 'Rp ${controller.ticketPrice.value}'
+                        : 'Pilih keberangkatan dan tujuan',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: controller.ticketPrice.value > 0
+                          ? Colors.black
+                          : Colors.red,
+                    ),
+                  );
+                }),
 
                 // Pilih Tanggal
                 Padding(
@@ -258,12 +285,10 @@ class FormBusView extends GetView<FormBusController> {
 
                 const SizedBox(height: 15),
 
-                // Tombol Konfirmasi
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        // Ambil data dari controller
                         final order = {
                           'passengerName':
                               controller.passengerNameController.text,
@@ -271,15 +296,14 @@ class FormBusView extends GetView<FormBusController> {
                               controller.selectedDeparturePoint.value,
                           'destination': controller.selectedDestination.value,
                           'departureDate': controller.formattedSelectedDate,
+                          'tiketPrice': controller.ticketPrice.value,
                           'departureTime': controller.selectedTime.value,
                           'paymentMethod':
                               controller.selectedPaymentMethod.value,
                         };
 
-                        // Tambahkan ke OrderController
                         Get.find<OrderController>().addOrder(order);
 
-                        // Tampilkan dialog konfirmasi
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
