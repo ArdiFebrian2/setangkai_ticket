@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:setangkai_ticket/app/shared/theme.dart';
-
 import '../../order/controllers/order_controller.dart';
 import '../../order/views/order_view.dart';
 import '../controllers/form_bus_controller.dart';
@@ -17,7 +16,8 @@ class FormBusView extends GetView<FormBusController> {
     Get.lazyPut(() => FormBusController());
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
+        title: const Text("Form Pemesanan Bus"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),

@@ -29,15 +29,11 @@ class LoginView extends GetView<LoginController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // Logo
-                  CircleAvatar(
-                    radius: 100,
-                    backgroundColor: Colors.transparent,
-                    child: Image.asset(
-                      'assets/images/logo.png',
-                      width: 500,
-                      height: 200,
-                      fit: BoxFit.cover,
-                    ),
+                  Image.asset(
+                    'assets/images/logo.png',
+                    width: 700,
+                    height: 200,
+                    fit: BoxFit.cover,
                   ),
 
                   const SizedBox(height: 16),

@@ -29,7 +29,7 @@ class LoginController extends GetxController {
         'Login Gagal',
         'Email atau password salah',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.red,
         colorText: Colors.white,
       );
     }

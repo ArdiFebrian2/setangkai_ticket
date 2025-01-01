@@ -33,17 +33,13 @@ class RegisterView extends GetView<RegisterController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // Logo
-                  CircleAvatar(
-                    radius: 100,
-                    backgroundColor: Colors.transparent,
-                    child: Image.asset(
-                      'assets/images/logo.png',
-                      width: 500,
-                      height: 150,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
                   const SizedBox(height: 16),
+                  Image.asset(
+                    'assets/images/logo.png',
+                    width: 500,
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
                   // Judul
                   const Text(
                     'Daftar Akun Baru',

@@ -15,14 +15,16 @@ class ProfileView extends GetView<ProfileController> {
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _buildProfileCard(),
-              const SizedBox(height: 24),
-              _buildProfileOptions(),
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
+              const Divider(thickness: 1, color: Colors.grey),
+              const SizedBox(height: 20),
+              _buildUserInfo(),
+              const SizedBox(height: 30),
               _buildLogoutButton(),
             ],
           ),
@@ -31,9 +33,6 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  // ==============================
-  // AppBar
-  // ==============================
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: Colors.white,
@@ -47,24 +46,30 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  // ==============================
-  // Profile Card
-  // ==============================
   Widget _buildProfileCard() {
-    return Card(
-      elevation: 3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            _buildProfilePicture(),
-            const SizedBox(height: 16),
-            _buildProfileName(),
-            _buildProfileEmail(),
-          ],
+    return Column(
+      children: [
+        _buildProfilePicture(),
+        const SizedBox(height: 16),
+        Obx(
+          () => Text(
+            controller.name.value,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
-      ),
+        Obx(
+          () => Text(
+            controller.email.value,
+            style: const TextStyle(
+              fontSize: 16,
+              color: Colors.grey,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -74,94 +79,63 @@ class ProfileView extends GetView<ProfileController> {
         controller.pickImage();
       },
       child: Obx(
-        () => CircleAvatar(
-          radius: 60,
-          backgroundImage: controller.photoPath.value.contains('assets')
-              ? AssetImage(controller.photoPath.value) as ImageProvider
-              : FileImage(File(controller.photoPath.value)),
+        () => Stack(
+          children: [
+            CircleAvatar(
+              radius: 60,
+              backgroundImage: controller.photoPath.value.contains('assets')
+                  ? AssetImage(controller.photoPath.value) as ImageProvider
+                  : FileImage(File(controller.photoPath.value)),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: secondary,
+                  shape: BoxShape.circle,
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(6.0),
+                  child: Icon(
+                    Icons.edit,
+                    color: Colors.white,
+                    size: 18,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildProfileName() {
-    return Obx(
-      () => Text(
-        controller.name.value,
-        style: const TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildProfileEmail() {
-    return Text(
-      'ardifebrian@gmail.com',
-      style: TextStyle(
-        fontSize: 14,
-        color: Colors.grey[600],
-      ),
-    );
-  }
-
-  // ==============================
-  // Profile Options List
-  // ==============================
-  Widget _buildProfileOptions() {
+  Widget _buildUserInfo() {
     return Column(
       children: [
-        _buildOptionCard(
-          icon: Icons.account_circle,
-          label: 'Account Settings',
-          onTap: () {},
+        ListTile(
+          leading: const Icon(Icons.phone, color: Colors.blue),
+          title: Obx(
+            () => Text(
+              controller.phone.value,
+              style: const TextStyle(fontSize: 16),
+            ),
+          ),
         ),
-        _buildOptionCard(
-          icon: Icons.history,
-          label: 'Order History',
-          onTap: () {
-            Get.toNamed('/order');
-          },
-        ),
-        _buildOptionCard(
-          icon: Icons.lock_outline,
-          label: 'Change Password',
-          onTap: () {},
+        ListTile(
+          leading: const Icon(Icons.location_on, color: Colors.red),
+          title: Obx(
+            () => Text(
+              controller.address.value,
+              style: const TextStyle(fontSize: 16),
+            ),
+          ),
         ),
       ],
     );
   }
 
-  Widget _buildOptionCard({
-    required IconData icon,
-    required String label,
-    required VoidCallback onTap,
-  }) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: ListTile(
-        leading: Icon(icon, color: secondary, size: 28),
-        title: Text(
-          label,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-        ),
-        trailing: const Icon(Icons.arrow_forward_ios, size: 18),
-        onTap: onTap,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
-    );
-  }
-
-  // ==============================
-  // Logout Button
-  // ==============================
   Widget _buildLogoutButton() {
     return ElevatedButton(
       onPressed: () {
@@ -173,6 +147,8 @@ class ProfileView extends GetView<ProfileController> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
+        shadowColor: Colors.grey,
+        elevation: 5,
       ),
       child: const Text(
         'Logout',
