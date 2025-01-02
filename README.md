@@ -1,16 +1,87 @@
-# setangkai_ticket
+# Setangkai Ticket
 
-A new Flutter project.
+A Flutter-based application designed for ticket booking. Setangkai Ticket provides a seamless and user-friendly interface for booking bus tickets and packages, viewing ticket history, managing profiles, and more.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- **User Authentication**: Secure login and registration.
+- **Ticket Booking**: Form-based bus and package ticket booking.
+- **FAQs**: Dedicated FAQ section for user queries.
+- **Payment Confirmation**: Smooth and intuitive payment confirmation process.
+- **History Tracking**: View past bookings in the history section.
+- **Profile Management**: Easily update and manage user profiles.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
+
+### 1. Login Page
+Effortless login for users to access their accounts.
+
+![Halaman Login](assets/screenshots/login.jpg)
+
+---
+
+### 2. Register Page
+Simple and secure user registration.
+
+![Halaman Register](assets/screenshots/register.jpg)
+
+---
+
+### 3. Home Page
+Central hub with easy navigation to all key features.
+
+![Halaman Home](assets/screenshots/home.jpg)
+
+---
+
+### 4. FAQ Page
+Get quick answers to frequently asked questions.
+
+![Halaman FAQ](assets/screenshots/faq.jpg)
+
+---
+
+### 5. Bus Ticket Form
+Convenient form to book bus tickets.
+
+![Halaman Form Bus](assets/screenshots/formbus.jpg)
+
+---
+
+### 6. Package Form
+Book special packages effortlessly.
+
+![Halaman Form Paket](assets/screenshots/formpaket.jpg)
+
+---
+
+### 7. Payment Confirmation Page
+Confirm your payment with a clean and clear interface.
+
+![Konfirmasi Pembayaran](assets/screenshots/tiketberhasil.jpg)
+
+---
+
+### 8. History Page
+View your previous bookings in an organized manner.
+
+![Halaman Riwayat](assets/screenshots/riwayat.jpg)
+
+---
+
+### 9. Profile Page
+Manage your profile details with ease.
+
+![Halaman Profile](assets/screenshots/profile.jpg)
+
+---
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/setangkai_ticket.git

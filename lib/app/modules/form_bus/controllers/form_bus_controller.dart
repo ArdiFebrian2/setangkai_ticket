@@ -85,6 +85,8 @@ class FormBusController extends GetxController {
     'Lubuk Alung-Lintau': 40000,
     'Batusangkar-Padang': 25000,
     'Batusangkar-Lintau': 25000,
+    'Batusangkar-Padang Panjang': 20000,
+    'Batusangkar-Lubuk Alung': 25000,
     'Padang-Lintau': 45000,
   };
 

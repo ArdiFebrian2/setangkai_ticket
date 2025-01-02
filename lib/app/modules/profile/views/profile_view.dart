@@ -24,7 +24,7 @@ class ProfileView extends GetView<ProfileController> {
               const Divider(thickness: 1, color: Colors.grey),
               const SizedBox(height: 20),
               _buildUserInfo(),
-              const SizedBox(height: 30),
+              const SizedBox(height: 230),
               _buildLogoutButton(),
             ],
           ),
