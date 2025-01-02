@@ -20,63 +20,63 @@ A Flutter-based application designed for ticket booking. Setangkai Ticket provid
 ### 1. Login Page
 Effortless login for users to access their accounts.
 
-<img src="assets/screenshots/login.jpg" alt="Halaman Login" width="600">
+<img src="assets/screenshots/login.jpg" alt="Halaman Login" width="400">
 
 ---
 
 ### 2. Register Page
 Simple and secure user registration.
 
-<img src="assets/screenshots/register.jpg" alt="Halaman Register" width="600">
+<img src="assets/screenshots/register.jpg" alt="Halaman Register" width="400">
 
 ---
 
 ### 3. Home Page
 Central hub with easy navigation to all key features.
 
-<img src="assets/screenshots/home.jpg" alt="Halaman Home" width="600">
+<img src="assets/screenshots/home.jpg" alt="Halaman Home" width="400">
 
 ---
 
 ### 4. FAQ Page
 Get quick answers to frequently asked questions.
 
-<img src="assets/screenshots/faq.jpg" alt="Halaman FAQ" width="600">
+<img src="assets/screenshots/faq.jpg" alt="Halaman FAQ" width="400">
 
 ---
 
 ### 5. Bus Ticket Form
 Convenient form to book bus tickets.
 
-<img src="assets/screenshots/formbus.jpg" alt="Halaman Form Bus" width="600">
+<img src="assets/screenshots/formbus.jpg" alt="Halaman Form Bus" width="400">
 
 ---
 
 ### 6. Package Form
 Book special packages effortlessly.
 
-<img src="assets/screenshots/formpaket.jpg" alt="Halaman Form Paket" width="600">
+<img src="assets/screenshots/formpaket.jpg" alt="Halaman Form Paket" width="400">
 
 ---
 
 ### 7. Payment Confirmation Page
 Confirm your payment with a clean and clear interface.
 
-<img src="assets/screenshots/tiketberhasil.jpg" alt="Konfirmasi Pembayaran" width="600">
+<img src="assets/screenshots/tiketberhasil.jpg" alt="Konfirmasi Pembayaran" width="400">
 
 ---
 
 ### 8. History Page
 View your previous bookings in an organized manner.
 
-<img src="assets/screenshots/riwayat.jpg" alt="Halaman Riwayat" width="600">
+<img src="assets/screenshots/riwayat.jpg" alt="Halaman Riwayat" width="400">
 
 ---
 
 ### 9. Profile Page
 Manage your profile details with ease.
 
-<img src="assets/screenshots/profile.jpg" alt="Halaman Profile" width="600">
+<img src="assets/screenshots/profile.jpg" alt="Halaman Profile" width="400">
 
 ---
 
