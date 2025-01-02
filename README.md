@@ -20,63 +20,63 @@ A Flutter-based application designed for ticket booking. Setangkai Ticket provid
 ### 1. Login Page
 Effortless login for users to access their accounts.
 
-![Halaman Login](assets/screenshots/login.jpg)
+<img src="assets/screenshots/login.jpg" alt="Halaman Login" width="600">
 
 ---
 
 ### 2. Register Page
 Simple and secure user registration.
 
-![Halaman Register](assets/screenshots/register.jpg)
+<img src="assets/screenshots/register.jpg" alt="Halaman Register" width="600">
 
 ---
 
 ### 3. Home Page
 Central hub with easy navigation to all key features.
 
-![Halaman Home](assets/screenshots/home.jpg)
+<img src="assets/screenshots/home.jpg" alt="Halaman Home" width="600">
 
 ---
 
 ### 4. FAQ Page
 Get quick answers to frequently asked questions.
 
-![Halaman FAQ](assets/screenshots/faq.jpg)
+<img src="assets/screenshots/faq.jpg" alt="Halaman FAQ" width="600">
 
 ---
 
 ### 5. Bus Ticket Form
 Convenient form to book bus tickets.
 
-![Halaman Form Bus](assets/screenshots/formbus.jpg)
+<img src="assets/screenshots/formbus.jpg" alt="Halaman Form Bus" width="600">
 
 ---
 
 ### 6. Package Form
 Book special packages effortlessly.
 
-![Halaman Form Paket](assets/screenshots/formpaket.jpg)
+<img src="assets/screenshots/formpaket.jpg" alt="Halaman Form Paket" width="600">
 
 ---
 
 ### 7. Payment Confirmation Page
 Confirm your payment with a clean and clear interface.
 
-![Konfirmasi Pembayaran](assets/screenshots/tiketberhasil.jpg)
+<img src="assets/screenshots/tiketberhasil.jpg" alt="Konfirmasi Pembayaran" width="600">
 
 ---
 
 ### 8. History Page
 View your previous bookings in an organized manner.
 
-![Halaman Riwayat](assets/screenshots/riwayat.jpg)
+<img src="assets/screenshots/riwayat.jpg" alt="Halaman Riwayat" width="600">
 
 ---
 
 ### 9. Profile Page
 Manage your profile details with ease.
 
-![Halaman Profile](assets/screenshots/profile.jpg)
+<img src="assets/screenshots/profile.jpg" alt="Halaman Profile" width="600">
 
 ---
 
